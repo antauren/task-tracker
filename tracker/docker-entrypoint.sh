@@ -12,6 +12,16 @@ serve() {
   exec python -m uvicorn app.server:app --host "${HOST}" --port "${PORT}" --reload
 }
 
+
+consume() {
+  wait_for_postgresql
+  wait_for_kafka
+
+  export HOST=${APP_HOST:-0.0.0.0}
+  export PORT=${APP_PORT:-8080}
+  exec python -m app.consumer
+}
+
 wait_for_kafka() {
   until kafkacat -b "${KAFKA_BOOTSTRAP_SERVERS:-kafka:29092}" -L  > /dev/null 2>&1
   do
@@ -46,6 +56,10 @@ case "$1" in
   serve)
     shift
     serve
+    ;;
+  consume)
+    shift
+    consume
     ;;
   *)
     exec "$@"

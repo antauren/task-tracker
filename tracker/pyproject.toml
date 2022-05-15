@@ -1,7 +1,7 @@
 [tool.poetry]
-name = "auth"
+name = "tracker"
 version = "0.1.0"
-description = "auth service"
+description = "tracker service"
 authors = ["Dmitry Nikolaev <etsu.nikolaev@gmail.com>"]
 
 [tool.poetry.dependencies]
@@ -18,8 +18,11 @@ loguru = "^0.6.0"
 asyncpg = "^0.25.0"
 pydantic = {extras = ["email"], version = "^1.9.0"}
 Jinja2 = "^3.1.2"
+httpx = "^0.22.0"
+Authlib = "^1.0.1"
 fastapi-utils = "^0.2.1"
 aiokafka = "^0.7.2"
+aiorun = "^2022.4.1"
 
 [tool.poetry.dev-dependencies]
 black = "^22.3.0"

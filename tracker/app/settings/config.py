@@ -23,12 +23,16 @@ class AppSettings(BaseSettings):
     PG_PORT: int = 5432
     PG_DB: str
 
+    OAUTH_TOKEN_URL: str
+
+    SECRET_KEY: str
+    ALGORITHM = "HS256"
+
     KAFKA_BOOTSTRAP_SERVERS: str = "kafka:9092"
     KAFKA_USER_STREAMING_TOPIC: str
-
-    SECRET_KEY: str  # To generate SECRET_KEY use `openssl rand -hex 32`
-    ALGORITHM = "HS256"
-    ACCESS_TOKEN_EXPIRE_MINUTES = 60
+    KAFKA_TASK_STREAMING_TOPIC: str
+    KAFKA_TASK_LIFECYCLE_TOPIC: str
+    KAFKA_GROUP_ID: str
 
     @property
     def database_connection_url(self):
